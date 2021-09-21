@@ -1,0 +1,11 @@
+PUT /api/upload HTTP/1.1
+Host: localhost:8000
+Content-Length: 186
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="data (13).json"
+Content-Type: application/json
+
+(data)
+----WebKitFormBoundary7MA4YWxkTrZu0gW
