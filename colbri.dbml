@@ -1,0 +1,49 @@
+
+// Creating tables
+Table users as U {
+  id int [pk, increment] // auto-increment
+  full_name varchar
+  created_at timestamp
+  following int
+}
+
+
+
+Table following as F{
+  following int
+  follower int
+  id int [pk, increment] // auto-increment
+}
+
+Ref: U.following > F.follower // many-to-one
+Ref: U.id < F.following // many-to-one
+
+Table like as L{
+  id int [pk, increment] // auto-increment
+  user_id int
+  colibri_id int
+}
+
+
+Ref: U.id < L.user_id
+Ref: C.id < L.colibri_id
+
+Enum colibri_type {
+  post [note: "Created by user"]
+  recolibri [note: "re-posted by user other time"]
+  comment [note: "comment to a colibri"]
+  // 'wait for validation' [note : "Enum label that has white spaces"]
+}
+
+Table colibri as C {
+  id int [pk, increment] // auto-increment
+  text varchar
+  type colibri_type
+  parent int
+  author int
+}
+Ref: C.author > U.id
+Ref: C.parent - C.id //one-to-one
+
+// https://stackoverflow.com/questions/1246725/iterate-through-linked-list-in-one-sql-query
+// https://docs.djangoproject.com/en/3.2/topics/db/sql/
